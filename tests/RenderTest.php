@@ -9,7 +9,7 @@ require_once "src/card.php";
 
 final class RenderTest extends TestCase
 {
-    private $testParams = array(
+    private $testParams = [
         "background" => "000000",
         "border" => "111111",
         "stroke" => "222222",
@@ -20,9 +20,9 @@ final class RenderTest extends TestCase
         "currStreakLabel" => "777777",
         "sideLabels" => "888888",
         "dates" => "999999",
-    );
+    ];
 
-    private $testStats = array(
+    private $testStats = [
         "totalContributions" => 2048,
         "firstContribution" => "2016-08-10",
         "longestStreak" => [
@@ -35,7 +35,7 @@ final class RenderTest extends TestCase
             "end" => "2019-04-12",
             "length" => 16,
         ],
-    );
+    ];
 
     /**
      * Test normal card render
@@ -70,6 +70,30 @@ final class RenderTest extends TestCase
         // Check that the card is rendered as expected
         $render = generateCard($this->testStats, $this->testParams);
         $expected = file_get_contents("tests/expected/test_date_card.svg");
+        $this->assertEquals($expected, $render);
+    }
+
+    /**
+     * Test locale parameter in render with date_format in translation file
+     */
+    public function testLocaleRenderDateFormat(): void
+    {
+        $this->testParams["locale"] = "ja";
+        // Check that the card is rendered as expected
+        $render = generateCard($this->testStats, $this->testParams);
+        $expected = file_get_contents("tests/expected/test_locale_ja_card.svg");
+        $this->assertEquals($expected, $render);
+    }
+
+    /**
+     * Test border radius
+     */
+    public function testBorderRadius(): void
+    {
+        $this->testParams["border_radius"] = "16";
+        // Check that the card is rendered as expected
+        $render = generateCard($this->testStats, $this->testParams);
+        $expected = file_get_contents("tests/expected/test_border_radius_card.svg");
         $this->assertEquals($expected, $render);
     }
 

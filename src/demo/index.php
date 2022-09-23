@@ -1,4 +1,28 @@
-<?php $THEMES = include "../themes.php"; ?>
+<?php
+
+$THEMES = include "../themes.php";
+$TRANSLATIONS = include "../translations.php";
+// Get the keys of the first value in the translations array
+$LOCALES = array_keys($TRANSLATIONS);
+
+$darkmode = $_COOKIE["darkmode"] ?? null;
+
+/**
+ * Convert a camelCase string to a skewer-case string
+ * @param string $str The camelCase string
+ * @return string The skewer-case string
+ */
+function camel_to_skewer(string $str): string
+{
+    return preg_replace_callback(
+        "/([A-Z])/",
+        function ($matches) {
+            return "-" . strtolower($matches[0]);
+        },
+        $str
+    );
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +60,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
 
-<body <?php echo (isset($_COOKIE["darkmode"]) && $_COOKIE["darkmode"] == "on") ? 'data-theme="dark"' : ""; ?>>
+<body <?php echo $darkmode === "on" ? 'data-theme="dark"' : ""; ?>>
     <h1>🔥 GitHub Readme Streak Stats</h1>
 
     <!-- GitHub badges/links section -->
@@ -54,23 +78,48 @@
             <h2>Properties</h2>
             <form class="parameters">
                 <label for="user">Username<span title="required">*</span></label>
-                <input class="param" type="text" id="user" name="user" placeholder="DenverCoder1" required pattern="^[A-Za-z\d-]{0,39}[A-Za-z\d]$" title="Up to 40 letters or hyphens but not ending with hyphen">
+                <input class="param" type="text" id="user" name="user" placeholder="DenverCoder1" pattern="^[A-Za-z\d-]{0,39}[A-Za-z\d]$" title="Up to 40 letters or hyphens but not ending with hyphen">
 
                 <label for="theme">Theme</label>
-                <select class="param" id="theme" name="theme" placeholder="default">
-                    <?php foreach ($THEMES as $theme => $options) : ?>
-                        <option><?php echo $theme; ?></option>
+                <select class="param" id="theme" name="theme">
+                    <?php foreach ($THEMES as $theme => $options): ?>
+                        <?php
+                        $dataAttrs = "";
+                        foreach ($options as $key => $value) {
+                            // convert key from camelCase to skewer-case
+                            $key = camel_to_skewer($key);
+                            // remove '#' from hex color value
+                            $value = preg_replace("/^\#/", "", $value);
+                            // add data attribute
+                            $dataAttrs .= "data-" . $key . "=\"" . $value . "\" ";
+                        }
+                        ?>
+                        <option value="<?php echo $theme; ?>" <?php echo $dataAttrs; ?>><?php echo $theme; ?></option>
                     <?php endforeach; ?>
                 </select>
 
                 <label for="hide_border">Hide Border</label>
-                <select class="param" id="hide_border" name="hide_border" placeholder="false">
+                <select class="param" id="hide_border" name="hide_border">
                     <option>false</option>
                     <option>true</option>
+                </select>
+                
+                <label for="border_radius">Border Radius</label>
+                <input class="param" type="number" id="border_radius" name="border_radius" placeholder="4.5" value="4.5" step="0.1">
+
+                <label for="locale">Locale</label>
+                <select class="param" id="locale" name="locale">
+                    <?php foreach ($LOCALES as $locale): ?>
+                        <option value="<?php echo $locale; ?>">
+                            <?php $display = Locale::getDisplayLanguage($locale, $locale); ?>
+                            <?php echo $display . " (" . $locale . ")"; ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
 
                 <label for="date_format">Date Format</label>
                 <select class="param" id="date_format" name="date_format">
+                    <option value="">default</option>
                     <option value="M j[, Y]">Aug 10, 2016</option>
                     <option value="j M[ Y]">10 Aug 2016</option>
                     <option value="[Y ]M j">2016 Aug 10</option>
@@ -83,42 +132,54 @@
                     <summary>⚙ Advanced Options</summary>
                     <div class="content parameters">
                         <label for="theme">Add Property</label>
-                        <select id="properties" name="properties" placeholder="background">
-                            <?php foreach ($THEMES["default"] as $option => $color) : ?>
+                        <select id="properties" name="properties">
+                            <?php foreach ($THEMES["default"] as $option => $color): ?>
                                 <option><?php echo $option; ?></option>
                             <?php endforeach; ?>
                         </select>
                         <button class="plus btn" onclick="return preview.addProperty();">+</button>
                     </div>
-                    <button class="btn" type="button" onclick='return exportPhp()'>Export to PHP</button>
+                    <button class="btn" type="button" onclick='return preview.exportPhp()'>Export to PHP</button>
                     <textarea id="exportedPhp" hidden></textarea>
-
                 </details>
 
-                <input class="btn" type="submit" value="Submit">
+                <input class="btn" type="submit" value="Open Permalink">
             </form>
         </div>
 
-        <div class="output">
-            <h2>Preview</h2>
-            <img alt="GitHub Readme Streak Stats" src="preview.php?user=" />
-            <p class="warning">
-                Note: The stats above are just examples and not from your GitHub profile.
-            </p>
+        <div class="output top-bottom-split">
+            <div class="top">
+                <h2>Preview</h2>
+                <img alt="GitHub Readme Streak Stats" src="preview.php?user=" />
+                <p class="warning">
+                    Note: The stats above are just examples and not from your GitHub profile.
+                </p>
 
-            <h2>Markdown</h2>
-            <div class="md">
-                <code></code>
+                <h2>Markdown</h2>
+                <div class="md">
+                    <code></code>
+                </div>
+
+                <button class="copy-button btn tooltip" onclick="clipboard.copy(this);" onmouseout="tooltip.reset(this);" disabled>
+                    Copy To Clipboard
+                </button>
             </div>
-
-            <button class="copy-button btn tooltip" onclick="clipboard.copy(this);" onmouseout="tooltip.reset(this);" disabled>
-                Copy To Clipboard
-            </button>
+            <div class="bottom">
+                <a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/docs/faq.md" target="_blank" class="underline-hover faq">
+                    Frequently Asked Questions
+                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                            <path fill="none" d="M0 0h24v24H0z"></path>
+                            <path d="M10 6v2H5v11h11v-5h2v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6zm11-3v9l-3.794-3.793-5.999 6-1.414-1.414 5.999-6L12 3h9z"></path>
+                        </g>
+                    </svg>
+                </a>
+            </div>
         </div>
     </div>
 
     <a href="javascript:toggleTheme()" class="darkmode" title="toggle dark mode">
-        <i class="<?php echo (isset($_COOKIE["darkmode"]) && $_COOKIE["darkmode"] == "on") ? 'gg-sun' : "gg-moon"; ?>"></i>
+        <i class="<?php echo $darkmode === "on" ? "gg-sun" : "gg-moon"; ?>"></i>
     </a>
 </body>
 

@@ -1,16 +1,14 @@
 name: Automated Releases
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   changelog:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: conventional Changelog Action
         id: changelog

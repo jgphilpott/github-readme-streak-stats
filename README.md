@@ -22,7 +22,7 @@
 2. Replace the value after `?user=` with your GitHub username
 
 ```md
-[![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=DenverCoder1)](https://git.io/streak-stats)
+[![GitHub Streak](https://streak-stats.demolab.com/?user=DenverCoder1)](https://git.io/streak-stats)
 ```
 
 > Note: See below for information about deploying the app on your own
@@ -31,24 +31,24 @@
 
 Here you can customize your Streak Stats card with a live preview.
 
-<http://github-readme-streak-stats.herokuapp.com/demo/>
+<http://streak-stats.demolab.com/demo/>
 
-[![Demo Site](https://user-images.githubusercontent.com/20955511/114579753-dbac8780-9c86-11eb-97dd-207039f67d20.gif "Demo Site")](http://github-readme-streak-stats.herokuapp.com/demo/)
+[![Demo Site](https://user-images.githubusercontent.com/20955511/114579753-dbac8780-9c86-11eb-97dd-207039f67d20.gif "Demo Site")](http://streak-stats.demolab.com/demo/)
 
 ## 🖌 Themes
 
 To enable a theme, append `&theme=` followed by the theme name to the end of the source url:
 
 ```md
-[![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=DenverCoder1&theme=dark)](https://git.io/streak-stats)
+[![GitHub Streak](https://streak-stats.demolab.com/?user=DenverCoder1&theme=dark)](https://git.io/streak-stats)
 ```
 
-|     Theme      |                               Preview                               |
-| :------------: | :-----------------------------------------------------------------: |
-|   `default`    |             ![default](https://i.imgur.com/IaTuYdS.png)             |
-|     `dark`     |              ![dark](https://i.imgur.com/bUrsjlp.png)               |
-| `highcontrast` |          ![highcontrast](https://i.imgur.com/ovrVrTY.png)           |
-|  More themes!  | **🎨 [See a list of all available themes](./docs/themes/README.md)** |
+|     Theme      |                            Preview                            |
+| :------------: | :-----------------------------------------------------------: |
+|   `default`    |          ![default](https://i.imgur.com/IaTuYdS.png)          |
+|     `dark`     |           ![dark](https://i.imgur.com/bUrsjlp.png)            |
+| `highcontrast` |       ![highcontrast](https://i.imgur.com/ovrVrTY.png)        |
+|  More themes!  | **🎨 [See a list of all available themes](./docs/themes.md)** |
 
 > If you have come up with a new theme you'd like to share with others, open an issue to add it!
 
@@ -58,23 +58,25 @@ The `user` field is the only required option. All other fields are optional.
 
 If the `theme` parameter is specified, any color customizations specified will be applied on top of the theme, overriding the theme's values.
 
-|     Parameter     |                    Details                     |                        Example                        |
-| :---------------: | :--------------------------------------------: | :---------------------------------------------------: |
-|      `user`       |       GitHub username to show stats for        |                    `DenverCoder1`                     |
-|      `theme`      |    The theme to apply (Default: `default`)     | `dark`, `radical`, etc. [🎨➜](./docs/themes/README.md) |
-|   `hide_border`   | Make the border transparent (Default: `false`) |                   `true` or `false`                   |
-|   `background`    |                Background color                |       **hex code** without `#` or **css color**       |
-|     `border`      |                  Border color                  |       **hex code** without `#` or **css color**       |
-|     `stroke`      |       Stroke line color between sections       |       **hex code** without `#` or **css color**       |
-|      `ring`       |  Color of the ring around the current streak   |       **hex code** without `#` or **css color**       |
-|      `fire`       |         Color of the fire in the ring          |       **hex code** without `#` or **css color**       |
-|  `currStreakNum`  |             Current streak number              |       **hex code** without `#` or **css color**       |
-|    `sideNums`     |        Total and longest streak numbers        |       **hex code** without `#` or **css color**       |
-| `currStreakLabel` |              Current streak label              |       **hex code** without `#` or **css color**       |
-|   `sideLabels`    |        Total and longest streak labels         |       **hex code** without `#` or **css color**       |
-|      `dates`      |             Date range text color              |       **hex code** without `#` or **css color**       |
-|   `date_format`   |       Date format (Default: `M j[, Y]`)        |    See note below on [Date Formats](#date-formats)    |
-|      `type`       |         Output format (Default: `svg`)         |       Current options: `svg`, `png` or `json`         |
+|     Parameter     |                     Details                     |                              Example                              |
+| :---------------: | :---------------------------------------------: | :---------------------------------------------------------------: |
+|      `user`       |        GitHub username to show stats for        |                          `DenverCoder1`                           |
+|      `theme`      |     The theme to apply (Default: `default`)     |          `dark`, `radical`, etc. [🎨➜](./docs/themes.md)          |
+|   `hide_border`   | Make the border transparent (Default: `false`)  |                         `true` or `false`                         |
+|  `border_radius`  | Set the roundness of the edges (Default: `4.5`) |           Number `0` (sharp corners) to `248` (ellipse)           |
+|   `background`    |                Background color                 |             **hex code** without `#` or **css color**             |
+|     `border`      |                  Border color                   |             **hex code** without `#` or **css color**             |
+|     `stroke`      |       Stroke line color between sections        |             **hex code** without `#` or **css color**             |
+|      `ring`       |   Color of the ring around the current streak   |             **hex code** without `#` or **css color**             |
+|      `fire`       |          Color of the fire in the ring          |             **hex code** without `#` or **css color**             |
+|  `currStreakNum`  |              Current streak number              |             **hex code** without `#` or **css color**             |
+|    `sideNums`     |        Total and longest streak numbers         |             **hex code** without `#` or **css color**             |
+| `currStreakLabel` |              Current streak label               |             **hex code** without `#` or **css color**             |
+|   `sideLabels`    |         Total and longest streak labels         |             **hex code** without `#` or **css color**             |
+|      `dates`      |              Date range text color              |             **hex code** without `#` or **css color**             |
+|   `date_format`   |        Date format (Default: `M j[, Y]`)        |          See note below on [Date Formats](#date-formats)          |
+|     `locale`      |    Locale to use for labels (Default: `en`)     | ISO 639-1 code (See [`translations.php`](./src/translations.php)) |
+|      `type`       |         Output format (Default: `svg`)          |              Current options: `svg`, `png` or `json`              |
 
 ### Date Formats
 
@@ -88,15 +90,15 @@ When the contribution year is equal to the current year, the characters in brack
 
 |     Date Format     |                                     Result                                      |
 | :-----------------: | :-----------------------------------------------------------------------------: |
-| <pre>d F[, Y]</pre> | <pre>"2020-04-14" => "14 April, 2020"<br/><br/>"2021-04-14" => "14 April"</pre> |
-|  <pre>j/n/Y</pre>   |   <pre>"2020-04-14" => "14/4/2020"<br/><br/>"2021-04-14" => "14/4/2021"</pre>   |
-| <pre>[Y.]n.j</pre>  |     <pre>"2020-04-14" => "2020.4.14"<br/><br/>"2021-04-14" => "4.14"</pre>      |
-| <pre>M j[, Y]</pre> |   <pre>"2020-04-14" => "Apr 14, 2020"<br/><br/>"2021-04-14" => "Apr 14"</pre>   |
+| <pre>d F[, Y]</pre> | <pre>"2020-04-14" => "14 April, 2020"<br/><br/>"2022-04-14" => "14 April"</pre> |
+|  <pre>j/n/Y</pre>   |   <pre>"2020-04-14" => "14/4/2020"<br/><br/>"2022-04-14" => "14/4/2022"</pre>   |
+| <pre>[Y.]n.j</pre>  |     <pre>"2020-04-14" => "2020.4.14"<br/><br/>"2022-04-14" => "4.14"</pre>      |
+| <pre>M j[, Y]</pre> |   <pre>"2020-04-14" => "Apr 14, 2020"<br/><br/>"2022-04-14" => "Apr 14"</pre>   |
 
 ### Example
 
 ```md
-[![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=denvercoder1&currStreakNum=2FD3EB&fire=pink&sideLabels=F00&date_format=[Y.]n.j)](https://git.io/streak-stats)
+[![GitHub Streak](https://streak-stats.demolab.com/?user=denvercoder1&currStreakNum=2FD3EB&fire=pink&sideLabels=F00&date_format=[Y.]n.j)](https://git.io/streak-stats)
 ```
 
 ## ℹ️ How these stats are calculated
@@ -137,15 +139,14 @@ You can deploy the PHP files on any website server with PHP installed or as a He
 
 [![](https://user-images.githubusercontent.com/20955511/136058102-b79570bc-4912-4369-b664-064a0ada8588.png)](#) [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/DenverCoder1/github-readme-streak-stats/tree/main "Deploy to Heroku")
 
-  5. **Add the token** as a Config Var with the key `TOKEN`:
+5. **Add the token** as a Config Var with the key `TOKEN`:
 
-  ![heroku config variables](https://user-images.githubusercontent.com/20955511/136292022-a8d9b3b5-d7d8-4a5e-a049-8d23b51ce9d7.png)
-  
-  6. Click **"Deploy App"** at the end of the form
-  7. Once the app is deployed, you can use `<your-app-name>.herokuapp.com` in place of `github-readme-streak-stats.herokuapp.com`
-  
+![heroku config variables](https://user-images.githubusercontent.com/20955511/136292022-a8d9b3b5-d7d8-4a5e-a049-8d23b51ce9d7.png)
+
+6. Click **"Deploy App"** at the end of the form
+7. Once the app is deployed, you can use `<your-app-name>.herokuapp.com` in place of `streak-stats.demolab.com`
+
 </details>
-
 
 ## 🤗 Contributing
 
@@ -157,9 +158,9 @@ Make sure your request is meaningful and you have tested the app locally before 
 
 #### Requirements
 
-- [PHP 8.0+](https://www.apachefriends.org/index.html)
+- [PHP 8.1+](https://www.apachefriends.org/index.html)
 - [Composer](https://getcomposer.org)
-- [Imagick](https://www.php.net/imagick)
+- [Inkscape](https://inkscape.org) (for PNG rendering)
 
 #### Linux
 
@@ -167,6 +168,7 @@ Make sure your request is meaningful and you have tested the app locally before 
 sudo apt-get install php
 sudo apt-get install php-curl
 sudo apt-get install composer
+sudo apt-get install inkscape
 ```
 
 #### Windows
@@ -185,6 +187,7 @@ cd github-readme-streak-stats
 ```
 
 ### Install dependencies
+
 Run the following command to install all the required dependencies to work on this project.
 
 ```bash
@@ -219,6 +222,18 @@ Run the following command to run the PHPUnit test script which will verify that 
 
 ```bash
 composer test
+```
+
+### Linting
+
+This project uses Prettier for formatting PHP, Markdown, JavaScript and CSS files.
+
+```bash
+# Run prettier and show the files that need to be fixed
+composer lint
+
+# Run prettier and fix the files
+composer lint-fix
 ```
 
 ## 🙋‍♂️ Support

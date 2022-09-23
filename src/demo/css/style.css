@@ -55,7 +55,7 @@ body {
 }
 
 .github span {
-    margin: 0 2px;
+  margin: 0 2px;
 }
 
 .container {
@@ -138,6 +138,7 @@ h2 {
 }
 
 .parameters input[type="text"],
+.parameters input[type="number"],
 .parameters input.jscolor,
 .parameters select {
   padding: 10px 14px;
@@ -247,6 +248,12 @@ input:focus:invalid {
   margin-top: 16px;
 }
 
+.top-bottom-split {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 /* tooltips */
 .btn.tooltip {
   display: flex;
@@ -300,4 +307,32 @@ textarea#exportedPhp {
   width: 100%;
   resize: vertical;
   height: 100px;
+}
+
+/* link underline effect */
+a.underline-hover {
+  position: relative;
+  text-decoration: none;
+  color: var(--text);
+  margin-top: 2em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25em;
+}
+.underline-hover::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--blue-light);
+  transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+@media (hover: hover) and (pointer: fine) {
+  .underline-hover:hover::before {
+    left: 0;
+    right: auto;
+    width: 100%;
+  }
 }

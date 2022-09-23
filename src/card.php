@@ -6,21 +6,48 @@ declare(strict_types=1);
  * Convert date from Y-M-D to more human-readable format
  *
  * @param string $dateString String in Y-M-D format
- * @param string $format Date format to use
+ * @param string|null $format Date format to use, or null to use locale default
+ * @param string $locale Locale code
  * @return string Formatted Date string
  */
-function formatDate(string $dateString, string $format): string
+function formatDate(string $dateString, string|null $format, string $locale): string
 {
     $date = new DateTime($dateString);
     $formatted = "";
+    $patternGenerator = new IntlDatePatternGenerator($locale);
     // if current year, display only month and day
     if (date_format($date, "Y") == date("Y")) {
-        // remove brackets and all text within them
-        $formatted = date_format($date, preg_replace("/\[.*?\]/", "", $format));
+        if ($format) {
+            // remove brackets and all text within them
+            $formatted = date_format($date, preg_replace("/\[.*?\]/", "", $format));
+        } else {
+            // format without year using locale
+            $pattern = $patternGenerator->getBestPattern("MMM d");
+            $dateFormatter = new IntlDateFormatter(
+                $locale,
+                IntlDateFormatter::MEDIUM,
+                IntlDateFormatter::NONE,
+                pattern: $pattern
+            );
+            $formatted = $dateFormatter->format($date);
+        }
     }
-    // otherwise, display month, day, and year (just brackets removed)
+    // otherwise, display month, day, and year
     else {
-        $formatted = date_format($date, str_replace(array("[", "]"), "", $format));
+        if ($format) {
+            // remove brackets, but leave text within them
+            $formatted = date_format($date, str_replace(["[", "]"], "", $format));
+        } else {
+            // format with year using locale
+            $pattern = $patternGenerator->getBestPattern("yyyy MMM d");
+            $dateFormatter = new IntlDateFormatter(
+                $locale,
+                IntlDateFormatter::MEDIUM,
+                IntlDateFormatter::NONE,
+                pattern: $pattern
+            );
+            $formatted = $dateFormatter->format($date);
+        }
     }
     // sanitize and return formatted date
     return htmlspecialchars($formatted);
@@ -68,7 +95,7 @@ function getRequestedTheme(array $params): array
                 $theme[$prop] = "#" . $param;
             }
             // check if color is valid css color
-            else if (in_array($param, $CSS_COLORS)) {
+            elseif (in_array($param, $CSS_COLORS)) {
                 // set property
                 $theme[$prop] = $param;
             }
@@ -90,35 +117,52 @@ function getRequestedTheme(array $params): array
  * @param array<string, string>|NULL $params Request parameters
  *
  * @return string The generated SVG Streak Stats card
+ *
+ * @throws InvalidArgumentException If a locale does not exist
  */
 function generateCard(array $stats, array $params = null): string
 {
-    // get requested theme, use $_REQUEST if no params array specified
-    $theme = getRequestedTheme($params ?? $_REQUEST);
+    $params = $params ?? $_REQUEST;
+
+    // get requested theme
+    $theme = getRequestedTheme($params);
+
+    // get the labels from the translations file
+    $translations = include "translations.php";
+    // get requested locale, default to English
+    $localeCode = $params["locale"] ?? "en";
+    $localeTranslations = $translations[$localeCode] ?? [];
+    // add missing translations from English
+    $localeTranslations += $translations["en"];
 
     // get date format
-    $dateFormat = isset(($params ?? $_REQUEST)["date_format"])
-        ? ($params ?? $_REQUEST)["date_format"]
-        : "M j[, Y]";
+    // locale date formatter (used only if date_format is not specified)
+    $dateFormat = $params["date_format"] ?? ($localeTranslations["date_format"] ?? null);
+
+    // number formatter
+    $numFormatter = new NumberFormatter($localeCode, NumberFormatter::DECIMAL);
+
+    // read border_radius parameter, default to 4.5 if not set
+    $borderRadius = $params["border_radius"] ?? "4.5";
 
     // total contributions
-    $totalContributions = $stats["totalContributions"];
-    $firstContribution = formatDate($stats["firstContribution"], $dateFormat);
-    $totalContributionsRange = $firstContribution . " - Present";
+    $totalContributions = $numFormatter->format($stats["totalContributions"]);
+    $firstContribution = formatDate($stats["firstContribution"], $dateFormat, $localeCode);
+    $totalContributionsRange = $firstContribution . " - " . $localeTranslations["Present"];
 
     // current streak
-    $currentStreak = $stats["currentStreak"]["length"];
-    $currentStreakStart = formatDate($stats["currentStreak"]["start"], $dateFormat);
-    $currentStreakEnd = formatDate($stats["currentStreak"]["end"], $dateFormat);
+    $currentStreak = $numFormatter->format($stats["currentStreak"]["length"]);
+    $currentStreakStart = formatDate($stats["currentStreak"]["start"], $dateFormat, $localeCode);
+    $currentStreakEnd = formatDate($stats["currentStreak"]["end"], $dateFormat, $localeCode);
     $currentStreakRange = $currentStreakStart;
     if ($currentStreakStart != $currentStreakEnd) {
         $currentStreakRange .= " - " . $currentStreakEnd;
     }
 
     // longest streak
-    $longestStreak = $stats["longestStreak"]["length"];
-    $longestStreakStart = formatDate($stats["longestStreak"]["start"], $dateFormat);
-    $longestStreakEnd = formatDate($stats["longestStreak"]["end"], $dateFormat);
+    $longestStreak = $numFormatter->format($stats["longestStreak"]["length"]);
+    $longestStreakStart = formatDate($stats["longestStreak"]["start"], $dateFormat, $localeCode);
+    $longestStreakEnd = formatDate($stats["longestStreak"]["end"], $dateFormat, $localeCode);
     $longestStreakRange = $longestStreakStart;
     if ($longestStreakStart != $longestStreakEnd) {
         $longestStreakRange .= " - " . $longestStreakEnd;
@@ -138,7 +182,7 @@ function generateCard(array $stats, array $params = null): string
         </style>
         <defs>
             <clipPath id='outer_rectangle'>
-                <rect width='495' height='195'/>
+                <rect width='495' height='195' rx='{$borderRadius}'/>
             </clipPath>
             <mask id='mask_out_ring_behind_fire'>
                 <rect width='495' height='195' fill='white'/>
@@ -147,8 +191,7 @@ function generateCard(array $stats, array $params = null): string
         </defs>
         <g clip-path='url(#outer_rectangle)'>
             <g style='isolation:isolate'>
-                <path d='M 4.5 0 L 490.5 0 C 492.984 0 495 2.016 495 4.5 L 495 190.5 C 495 192.984 492.984 195 490.5 195 L 4.5 195 C 2.016 195 0 192.984 0 190.5 L 0 4.5 C 0 2.016 2.016 0 4.5 0 Z'
-                      style='stroke: {$theme["border"]}; fill: {$theme["background"]};stroke-miterlimit:10;rx: 4.5;'/>
+                <rect stroke='{$theme["border"]}' fill='{$theme["background"]}' rx='{$borderRadius}' x='0.5' y='0.5' width='494' height='194'/>
             </g>
             <g style='isolation:isolate'>
                 <line x1='330' y1='28' x2='330' y2='170' vector-effect='non-scaling-stroke' stroke-width='1' stroke='{$theme["stroke"]}' stroke-linejoin='miter' stroke-linecap='square' stroke-miterlimit='3'/>
@@ -167,7 +210,7 @@ function generateCard(array $stats, array $params = null): string
                 <g transform='translate(1,84)'>
                     <rect width='163' height='50' stroke='none' fill='none'></rect>
                     <text x='81.5' y='32' stroke-width='0' text-anchor='middle' style='font-family:Segoe UI, Ubuntu, sans-serif;font-weight:400;font-size:14px;font-style:normal;fill:{$theme["sideLabels"]};stroke:none; opacity: 0; animation: fadein 0.5s linear forwards 0.7s;'>
-                        Total Contributions
+                        {$localeTranslations["Total Contributions"]}
                     </text>
                 </g>
 
@@ -192,7 +235,7 @@ function generateCard(array $stats, array $params = null): string
                 <g transform='translate(166,108)'>
                     <rect width='163' height='50' stroke='none' fill='none'></rect>
                     <text x='81.5' y='32' stroke-width='0' text-anchor='middle' style='font-family:Segoe UI, Ubuntu, sans-serif;font-weight:700;font-size:14px;font-style:normal;fill:{$theme["currStreakLabel"]};stroke:none;opacity: 0; animation: fadein 0.5s linear forwards 0.9s;'>
-                        Current Streak
+                        {$localeTranslations["Current Streak"]}
                     </text>
                 </g>
 
@@ -228,7 +271,7 @@ function generateCard(array $stats, array $params = null): string
                 <g transform='translate(331,84)'>
                     <rect width='163' height='50' stroke='none' fill='none'></rect>
                     <text x='81.5' y='32' stroke-width='0' text-anchor='middle' style='font-family:Segoe UI, Ubuntu, sans-serif;font-weight:400;font-size:14px;font-style:normal;fill:{$theme["sideLabels"]};stroke:none;opacity: 0; animation: fadein 0.5s linear forwards 1.3s;'>
-                        Longest Streak
+                        {$localeTranslations["Longest Streak"]}
                     </text>
                 </g>
 
@@ -255,8 +298,13 @@ function generateCard(array $stats, array $params = null): string
  */
 function generateErrorCard(string $message, array $params = null): string
 {
+    $params = $params ?? $_REQUEST;
+
     // get requested theme, use $_REQUEST if no params array specified
-    $theme = getRequestedTheme($params ?? $_REQUEST);
+    $theme = getRequestedTheme($params);
+
+    // read border_radius parameter, default to 4.5 if not set
+    $borderRadius = $params["border_radius"] ?? "4.5";
 
     return "<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' style='isolation:isolate' viewBox='0 0 495 195' width='495px' height='195px'>
         <style>
@@ -266,13 +314,12 @@ function generateErrorCard(string $message, array $params = null): string
         </style>
         <defs>
             <clipPath id='outer_rectangle'>
-                <rect width='495' height='195'/>
+                <rect width='495' height='195' rx='{$borderRadius}'/>
             </clipPath>
         </defs>
         <g clip-path='url(#outer_rectangle)'>
             <g style='isolation:isolate'>
-                <path d='M 4.5 0 L 490.5 0 C 492.984 0 495 2.016 495 4.5 L 495 190.5 C 495 192.984 492.984 195 490.5 195 L 4.5 195 C 2.016 195 0 192.984 0 190.5 L 0 4.5 C 0 2.016 2.016 0 4.5 0 Z'
-                    style='stroke: {$theme["border"]}; fill: {$theme["background"]};stroke-miterlimit:10;rx: 4.5;'/>
+                <rect stroke='{$theme["border"]}' fill='{$theme["background"]}' rx='{$borderRadius}' x='0.5' y='0.5' width='494' height='194'/>
             </g>
             <g style='isolation:isolate'>
                 <!-- Error Label -->
@@ -286,8 +333,8 @@ function generateErrorCard(string $message, array $params = null): string
                 <!-- mask for background behind face -->
                 <defs>
                     <mask id='cut-off-area'>
-                    <rect x='0' y='0' width='500' height='500' fill='white' />
-                    <ellipse cx='247.5' cy='31' rx='13' ry='18'/>
+                        <rect x='0' y='0' width='500' height='500' fill='white' />
+                        <ellipse cx='247.5' cy='31' rx='13' ry='18'/>
                     </mask>
                 </defs>
                 <!-- Sad face -->
@@ -309,8 +356,6 @@ function generateErrorCard(string $message, array $params = null): string
  * @param string $svg The SVG for the card as a string
  *
  * @return string The generated PNG data
- *
- * @throws ImagickException
  */
 function convertSvgToPng(string $svg): string
 {
@@ -318,28 +363,26 @@ function convertSvgToPng(string $svg): string
     $svg = trim($svg);
 
     // remove style and animations
-    $svg = preg_replace('/(<style>\X*?<\/style>)/m', '', $svg);
-    $svg = preg_replace('/(opacity: 0;)/m', 'opacity: 1;', $svg);
-    $svg = preg_replace('/(animation: fadein.*?;)/m', 'opacity: 1;', $svg);
-    $svg = preg_replace('/(animation: currentstreak.*?;)/m', 'font-size: 28px;', $svg);
-    $svg = preg_replace('/<a \X*?>(\X*?)<\/a>/m', '\1', $svg);
+    $svg = preg_replace("/(<style>\X*?<\/style>)/m", "", $svg);
+    $svg = preg_replace("/(opacity: 0;)/m", "opacity: 1;", $svg);
+    $svg = preg_replace("/(animation: fadein.*?;)/m", "opacity: 1;", $svg);
+    $svg = preg_replace("/(animation: currstreak.*?;)/m", "font-size: 28px;", $svg);
+    $svg = preg_replace("/<a \X*?>(\X*?)<\/a>/m", '\1', $svg);
 
-    // create canvas
-    $imagick = new Imagick();
-    $imagick->setBackgroundColor(new ImagickPixel('transparent'));
+    // save svg to random file
+    $filename = uniqid();
+    file_put_contents("$filename.svg", $svg);
 
-    // add svg image
-    $imagick->setFormat('svg');
-    $imagick->readImageBlob('<?xml version="1.0" encoding="UTF-8" standalone="no"?>' . $svg);
-    $imagick->setFormat('png');
+    // convert svg to png
+    $out = shell_exec("inkscape -w 495 -h 195 {$filename}.svg -o {$filename}.png"); // skipcq: PHP-A1009
+    if ($out !== null) {
+        throw new Exception("Error converting SVG to PNG: $out");
+    }
 
-    // get PNG data
-    $png = $imagick->getImageBlob();
-
-    // clean up memory
-    $imagick->clear();
-    $imagick->destroy();
-
+    // read png data and delete temporary files
+    $png = file_get_contents("{$filename}.png");
+    unlink("{$filename}.svg");
+    unlink("{$filename}.png");
     return $png;
 }
 
@@ -350,15 +393,15 @@ function convertSvgToPng(string $svg): string
  */
 function renderOutput(string|array $output, int $responseCode = 200): void
 {
-    $requestedType = $_REQUEST['type'] ?? 'svg';
+    $requestedType = $_REQUEST["type"] ?? "svg";
     http_response_code($responseCode);
 
     // output JSON data
     if ($requestedType === "json") {
         // set content type to JSON
-        header('Content-Type: application/json');
+        header("Content-Type: application/json");
         // generate array from output
-        $data = gettype($output) === "string" ? array("error" => $output) : $output;
+        $data = gettype($output) === "string" ? ["error" => $output] : $output;
         // output as JSON
         echo json_encode($data);
     }
@@ -371,5 +414,5 @@ function renderOutput(string|array $output, int $responseCode = 200): void
         // output PNG if PNG is requested, otherwise output SVG
         echo $requestedType === "png" ? convertSvgToPng($svg) : $svg;
     }
-    exit;
+    exit();
 }

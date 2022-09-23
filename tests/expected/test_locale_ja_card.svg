@@ -40,7 +40,7 @@
                 <g transform='translate(1,84)'>
                     <rect width='163' height='50' stroke='none' fill='none'></rect>
                     <text x='81.5' y='32' stroke-width='0' text-anchor='middle' style='font-family:Segoe UI, Ubuntu, sans-serif;font-weight:400;font-size:14px;font-style:normal;fill:#888888;stroke:none; opacity: 0; animation: fadein 0.5s linear forwards 0.7s;'>
-                        Total Contributions
+                        総ｺﾝﾄﾘﾋﾞｭｰｼｮﾝ数
                     </text>
                 </g>
 
@@ -48,7 +48,7 @@
                 <g transform='translate(1,114)'>
                     <rect width='163' height='50' stroke='none' fill='none'></rect>
                     <text x='81.5' y='32' stroke-width='0' text-anchor='middle' style='font-family:Segoe UI, Ubuntu, sans-serif;font-weight:400;font-size:12px;font-style:normal;fill:#999999;stroke:none; opacity: 0; animation: fadein 0.5s linear forwards 0.8s;'>
-                        2016-08-10 - Present
+                        2016.8.10 - 今
                     </text>
                 </g>
             </g>
@@ -65,7 +65,7 @@
                 <g transform='translate(166,108)'>
                     <rect width='163' height='50' stroke='none' fill='none'></rect>
                     <text x='81.5' y='32' stroke-width='0' text-anchor='middle' style='font-family:Segoe UI, Ubuntu, sans-serif;font-weight:700;font-size:14px;font-style:normal;fill:#777777;stroke:none;opacity: 0; animation: fadein 0.5s linear forwards 0.9s;'>
-                        Current Streak
+                        現在のストリーク
                     </text>
                 </g>
 
@@ -73,7 +73,7 @@
                 <g transform='translate(166,145)'>
                     <rect width='163' height='26' stroke='none' fill='none'></rect>
                     <text x='81.5' y='21' stroke-width='0' text-anchor='middle' style='font-family:Segoe UI, Ubuntu, sans-serif;font-weight:400;font-size:12px;font-style:normal;fill:#999999;stroke:none;opacity: 0; animation: fadein 0.5s linear forwards 0.9s;'>
-                        2019-03-28 - 04-12
+                        2019.3.28 - 2019.4.12
                     </text>
                 </g>
 
@@ -101,7 +101,7 @@
                 <g transform='translate(331,84)'>
                     <rect width='163' height='50' stroke='none' fill='none'></rect>
                     <text x='81.5' y='32' stroke-width='0' text-anchor='middle' style='font-family:Segoe UI, Ubuntu, sans-serif;font-weight:400;font-size:14px;font-style:normal;fill:#888888;stroke:none;opacity: 0; animation: fadein 0.5s linear forwards 1.3s;'>
-                        Longest Streak
+                        最長のストリーク
                     </text>
                 </g>
 
@@ -109,7 +109,7 @@
                 <g transform='translate(331,114)'>
                     <rect width='163' height='50' stroke='none' fill='none'></rect>
                     <text x='81.5' y='32' stroke-width='0' text-anchor='middle' style='font-family:Segoe UI, Ubuntu, sans-serif;font-weight:400;font-size:12px;font-style:normal;fill:#999999;stroke:none;opacity: 0; animation: fadein 0.5s linear forwards 1.4s;'>
-                        2016-12-19 - 2016-03-14
+                        2016.12.19 - 2016.3.14
                     </text>
                 </g>
             </g>

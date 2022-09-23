@@ -1,4 +1,17 @@
+# Generated files
+vendor/
+node_modules/
+*.log
 composer.phar
-/vendor/
+yarn.lock
+package-lock.json
+
+# Local Configuration
+package.json
+.DS_Store
+
+# Environment
 .env
+
+# IDE
 .vscode/
