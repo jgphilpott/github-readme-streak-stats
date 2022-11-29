@@ -17,6 +17,10 @@
  * 2016.8.10        8.10        [Y.]n.j
  *
  * For info on valid date_format strings, see https://github.com/DenverCoder1/github-readme-streak-stats#date-formats
+ *
+ * Right-to-Left Language Support
+ * ------------------------------
+ * To enable right-to-left language support, add `"rtl" => true` to the locale array (see "he" for an example).
  */
 
 return [
@@ -28,6 +32,18 @@ return [
         "Present" => "Present",
     ],
     // Locales below are sorted alphabetically
+    "bn" => [
+        "Total Contributions" => "মোট অবদান",
+        "Current Streak" => "বর্তমান স্ট্রীক",
+        "Longest Streak" => "দীর্ঘতম স্ট্রিক",
+        "Present" => "এখনো পর্যন্ত",
+    ],
+    "da" => [
+        "Total Contributions" => "Totalt Antal Bidrag",
+        "Current Streak" => "Nuværende i Træk",
+        "Longest Streak" => "Længst i Træk",
+        "Present" => "I dag",
+    ],
     "de" => [
         "Total Contributions" => "Gesamte Beiträge",
         "Current Streak" => "Aktuelle Serie",
@@ -45,6 +61,13 @@ return [
         "Current Streak" => "Séquence actuelle",
         "Longest Streak" => "Plus longue séquence",
         "Present" => "Aujourd'hui",
+    ],
+    "he" => [
+        "rtl" => true,
+        "Total Contributions" => "סכום התרומות",
+        "Current Streak" => "רצף נוכחי",
+        "Longest Streak" => "רצף הכי ארוך",
+        "Present" => "היום",
     ],
     "hi" => [
         "Total Contributions" => "कुल योगदान",
@@ -101,11 +124,23 @@ return [
         "Longest Streak" => "Самая длинная серия",
         "Present" => "Сейчас",
     ],
+    "ta" => [
+        "Total Contributions" => "மொத்த\nபங்களிப்புகள்",
+        "Current Streak" => "மிக சமீபத்திய பங்களிப்புகள்",
+        "Longest Streak" => "நீண்ட\nபங்களிப்புகள்",
+        "Present" => "இன்றுவரை",
+    ],
     "tr" => [
         "Total Contributions" => "Toplam Katkı",
         "Current Streak" => "Güncel Seri",
         "Longest Streak" => "En Uzun Seri",
         "Present" => "Şu an",
+    ],
+    "vi" => [
+        "Total Contributions" => "Tổng số đóng góp",
+        "Current Streak" => "Chuỗi đóng góp\nhiện tại",
+        "Longest Streak" => "Chuỗi đóng góp lớn nhất",
+        "Present" => "Hiện tại",
     ],
     "zh" => [
         "Total Contributions" => "合计贡献",
