@@ -43,29 +43,30 @@ The `user` field is the only required option. All other fields are optional.
 
 If the `theme` parameter is specified, any color customizations specified will be applied on top of the theme, overriding the theme's values.
 
-|     Parameter     |                     Details                     |                              Example                              |
-| :---------------: | :---------------------------------------------: | :---------------------------------------------------------------: |
-|      `user`       |        GitHub username to show stats for        |                          `DenverCoder1`                           |
-|      `theme`      |     The theme to apply (Default: `default`)     |          `dark`, `radical`, etc. [🎨➜](./docs/themes.md)          |
-|   `hide_border`   | Make the border transparent (Default: `false`)  |                         `true` or `false`                         |
-|  `border_radius`  | Set the roundness of the edges (Default: `4.5`) |           Number `0` (sharp corners) to `248` (ellipse)           |
-|   `background`    |                Background color                 |             **hex code** without `#` or **css color**             |
-|     `border`      |                  Border color                   |             **hex code** without `#` or **css color**             |
-|     `stroke`      |       Stroke line color between sections        |             **hex code** without `#` or **css color**             |
-|      `ring`       |   Color of the ring around the current streak   |             **hex code** without `#` or **css color**             |
-|      `fire`       |          Color of the fire in the ring          |             **hex code** without `#` or **css color**             |
-|  `currStreakNum`  |              Current streak number              |             **hex code** without `#` or **css color**             |
-|    `sideNums`     |        Total and longest streak numbers         |             **hex code** without `#` or **css color**             |
-| `currStreakLabel` |              Current streak label               |             **hex code** without `#` or **css color**             |
-|   `sideLabels`    |         Total and longest streak labels         |             **hex code** without `#` or **css color**             |
-|      `dates`      |              Date range text color              |             **hex code** without `#` or **css color**             |
-|   `date_format`   |        Date format (Default: `M j[, Y]`)        |          See note below on [Date Formats](#date-formats)          |
-|     `locale`      |    Locale to use for labels (Default: `en`)     | ISO 639-1 code (See [`translations.php`](./src/translations.php)) |
-|      `type`       |         Output format (Default: `svg`)          |              Current options: `svg`, `png` or `json`              |
+|     Parameter     |                     Details                     |                                  Example                                  |
+| :---------------: | :---------------------------------------------: | :-----------------------------------------------------------------------: |
+|      `user`       |        GitHub username to show stats for        |                              `DenverCoder1`                               |
+|      `theme`      |     The theme to apply (Default: `default`)     |              `dark`, `radical`, etc. [🎨➜](./docs/themes.md)              |
+|   `hide_border`   | Make the border transparent (Default: `false`)  |                             `true` or `false`                             |
+|  `border_radius`  | Set the roundness of the edges (Default: `4.5`) |               Number `0` (sharp corners) to `248` (ellipse)               |
+|   `background`    |                Background color                 |                 **hex code** without `#` or **css color**                 |
+|     `border`      |                  Border color                   |                 **hex code** without `#` or **css color**                 |
+|     `stroke`      |       Stroke line color between sections        |                 **hex code** without `#` or **css color**                 |
+|      `ring`       |   Color of the ring around the current streak   |                 **hex code** without `#` or **css color**                 |
+|      `fire`       |          Color of the fire in the ring          |                 **hex code** without `#` or **css color**                 |
+|  `currStreakNum`  |              Current streak number              |                 **hex code** without `#` or **css color**                 |
+|    `sideNums`     |        Total and longest streak numbers         |                 **hex code** without `#` or **css color**                 |
+| `currStreakLabel` |              Current streak label               |                 **hex code** without `#` or **css color**                 |
+|   `sideLabels`    |         Total and longest streak labels         |                 **hex code** without `#` or **css color**                 |
+|      `dates`      |              Date range text color              |                 **hex code** without `#` or **css color**                 |
+|   `date_format`   | Date format pattern or empty for locale format  |            See note below on [📅 Date Formats](#-date-formats)            |
+|     `locale`      |  Locale for labels and numbers (Default: `en`)  |                ISO 639-1 code - See [🗪 Locales](#-locales)                |
+|      `type`       |         Output format (Default: `svg`)          |                  Current options: `svg`, `png` or `json`                  |
+|      `mode`       |         Streak mode (Default: `daily`)          | `daily` (contribute daily) or `weekly` (contribute once per Sun-Sat week) |
 
-## 🖌 Themes
+### 🖌 Themes
 
-To enable a theme, append `&theme=` followed by the theme name to the end of the source url:
+To enable a theme, append `&theme=` followed by the theme name to the end of the source URL:
 
 ```md
 [![GitHub Streak](https://streak-stats.demolab.com/?user=DenverCoder1&theme=dark)](https://git.io/streak-stats)
@@ -78,9 +79,24 @@ To enable a theme, append `&theme=` followed by the theme name to the end of the
 | `highcontrast` |       ![highcontrast](https://i.imgur.com/ovrVrTY.png)        |
 |  More themes!  | **🎨 [See a list of all available themes](./docs/themes.md)** |
 
-**If you have come up with a new theme you'd like to share with others, open an issue to add it!**
+**If you have come up with a new theme you'd like to share with others, please see [Issue #32](https://github.com/DenverCoder1/github-readme-streak-stats/issues/32) for more information on how to contribute.**
 
-### Date Formats
+### 🗪 Locales
+
+The following are the locales that have labels translated in Streak Stats. The `locale` query parameter accepts any ISO language or locale code, see [here](https://gist.github.com/DenverCoder1/f61147ba26bfcf7c3bf605af7d3382d5) for a list of valid locales. The locale provided will be used for the date format and number format even if translations are not yet available.
+
+<!-- This section is automatically generated by the `translation-progress.php` script. -->
+<!-- prettier-ignore-start -->
+<!-- TRANSLATION_PROGRESS_START -->
+<table><tbody><tr><td><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L33"><code>en</code></a> - English<br /><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L33"><img src="https://progress-bar.dev/100" alt="English 100%"></a></td><td><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L42"><code>ar</code></a> - العربية<br /><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L42"><img src="https://progress-bar.dev/100" alt="العربية 100%"></a></td><td><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L51"><code>bg</code></a> - български<br /><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L51"><img src="https://progress-bar.dev/100" alt="български 100%"></a></td><td><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L59"><code>bn</code></a> - বাংলা<br /><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L59"><img src="https://progress-bar.dev/100" alt="বাংলা 100%"></a></td><td><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L73"><code>de</code></a> - Deutsch<br /><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L73"><img src="https://progress-bar.dev/100" alt="Deutsch 100%"></a></td></tr><tr><td><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L81"><code>es</code></a> - español<br /><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L81"><img src="https://progress-bar.dev/100" alt="español 100%"></a></td><td><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L89"><code>fa</code></a> - فارسی<br /><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L89"><img src="https://progress-bar.dev/100" alt="فارسی 100%"></a></td><td><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L98"><code>fr</code></a> - français<br /><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L98"><img src="https://progress-bar.dev/100" alt="français 100%"></a></td><td><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L106"><code>he</code></a> - עברית<br /><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L106"><img src="https://progress-bar.dev/100" alt="עברית 100%"></a></td><td><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L115"><code>hi</code></a> - हिन्दी<br /><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L115"><img src="https://progress-bar.dev/100" alt="हिन्दी 100%"></a></td></tr><tr><td><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L123"><code>id</code></a> - Indonesia<br /><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L123"><img src="https://progress-bar.dev/100" alt="Indonesia 100%"></a></td><td><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L131"><code>it</code></a> - italiano<br /><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L131"><img src="https://progress-bar.dev/100" alt="italiano 100%"></a></td><td><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L139"><code>ja</code></a> - 日本語<br /><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L139"><img src="https://progress-bar.dev/100" alt="日本語 100%"></a></td><td><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L148"><code>kn</code></a> - ಕನ್ನಡ<br /><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L148"><img src="https://progress-bar.dev/100" alt="ಕನ್ನಡ 100%"></a></td><td><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L156"><code>ko</code></a> - 한국어<br /><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L156"><img src="https://progress-bar.dev/100" alt="한국어 100%"></a></td></tr><tr><td><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L164"><code>mr</code></a> - मराठी<br /><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L164"><img src="https://progress-bar.dev/100" alt="मराठी 100%"></a></td><td><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L172"><code>nl</code></a> - Nederlands<br /><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L172"><img src="https://progress-bar.dev/100" alt="Nederlands 100%"></a></td><td><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L180"><code>pl</code></a> - polski<br /><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L180"><img src="https://progress-bar.dev/100" alt="polski 100%"></a></td><td><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L188"><code>ps</code></a> - پښتو<br /><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L188"><img src="https://progress-bar.dev/100" alt="پښتو 100%"></a></td><td><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L196"><code>pt_BR</code></a> - português (Brasil)<br /><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L196"><img src="https://progress-bar.dev/100" alt="português (Brasil) 100%"></a></td></tr><tr><td><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L204"><code>ru</code></a> - русский<br /><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L204"><img src="https://progress-bar.dev/100" alt="русский 100%"></a></td><td><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L224"><code>uk</code></a> - українська<br /><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L224"><img src="https://progress-bar.dev/100" alt="українська 100%"></a></td><td><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L232"><code>ur_PK</code></a> - اردو (پاکستان)<br /><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L232"><img src="https://progress-bar.dev/100" alt="اردو (پاکستان) 100%"></a></td><td><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L241"><code>vi</code></a> - Tiếng Việt<br /><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L241"><img src="https://progress-bar.dev/100" alt="Tiếng Việt 100%"></a></td><td><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L249"><code>yo</code></a> - Èdè Yorùbá<br /><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L249"><img src="https://progress-bar.dev/100" alt="Èdè Yorùbá 100%"></a></td></tr><tr><td><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L258"><code>zh_Hans</code></a> - 中文（简体）<br /><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L258"><img src="https://progress-bar.dev/100" alt="中文（简体） 100%"></a></td><td><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L266"><code>zh_Hant</code></a> - 中文（繁體）<br /><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L266"><img src="https://progress-bar.dev/100" alt="中文（繁體） 100%"></a></td><td><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L67"><code>da</code></a> - dansk<br /><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L67"><img src="https://progress-bar.dev/67" alt="dansk 67%"></a></td><td><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L212"><code>ta</code></a> - தமிழ்<br /><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L212"><img src="https://progress-bar.dev/67" alt="தமிழ் 67%"></a></td><td><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L218"><code>tr</code></a> - Türkçe<br /><a href="https://github.com/DenverCoder1/github-readme-streak-stats/blob/main/src/translations.php#L218"><img src="https://progress-bar.dev/67" alt="Türkçe 67%"></a></td></tr></tbody></table>
+<!-- TRANSLATION_PROGRESS_END -->
+<!-- prettier-ignore-end -->
+
+**If you would like to help translate the Streak Stats cards, please see [Issue #236](https://github.com/DenverCoder1/github-readme-streak-stats/issues/236) for more information.**
+
+### 📅 Date Formats
+
+If `date_format` is not provided or is empty, the PHP Intl library is used to determine the date format based on the locale specified in the `locale` query parameter.
 
 A custom date format can be specified by passing a string to the `date_format` parameter.
 
@@ -132,8 +148,11 @@ The Inkscape dependency is required for PNG rendering, as well as Segoe UI font 
 
 [![Heroku_logo](https://user-images.githubusercontent.com/20955511/136292872-ab2b3918-3350-4878-93a2-aa1f569b095a.png)](https://heroku.com)
 
+Heroku costs around $5-$7/month minimum for a single app, but you can contact the Open Source program
+at ospo-heroku-credits@salesforce.com to possibly get free credits.
+
 <details>
-  <summary><b>Instructions for Deploying to Heroku for Free</b></summary>
+  <summary><b>Instructions for Deploying to Heroku</b></summary>
   
   ### Step-by-step instructions for deploying to Heroku
   
@@ -150,6 +169,38 @@ The Inkscape dependency is required for PNG rendering, as well as Segoe UI font 
 
 6. Click **"Deploy App"** at the end of the form
 7. Once the app is deployed, you can use `<your-app-name>.herokuapp.com` in place of `streak-stats.demolab.com`
+
+</details>
+
+[![Vercel_logo](https://user-images.githubusercontent.com/20955511/209479243-5b14048b-e9ae-42da-aec3-1cc88a97aaee.png)](https://vercel.com)
+
+Vercel is a free hosting service that can be used to run PHP. **Note:** The intl library seems to not be available through Vercel at the moment
+(https://github.com/vercel-community/php/issues/367), so the automatic number and date formats for locales other than English will not work.
+PNG mode is also not supported since Inkscape will not be installed.
+
+<details>
+  <summary><b>Instructions for Deploying to Vercel for Free</b></summary>
+
+### Step-by-step instructions for deploying to Vercel
+
+1. Sign in to **Vercel** or create a new account at <https://vercel.com>
+2. Clone this repository with `git clone https://github.com/DenverCoder1/github-readme-streak-stats.git`
+   - You may also fork the repository and clone your fork instead if you intend to make changes
+3. Enter the directory with `cd github-readme-streak-stats`
+4. Switch branches to the `vercel` branch with `git checkout vercel`
+5. Make sure you have the [Vercel CLI](https://vercel.com/download) installed
+6. Run `vercel` and follow the prompts to link your Vercel account and select a project name
+7. The app will be deployed to `<project-name>.vercel.app`
+8. Visit [this link](https://github.com/settings/tokens/new?description=GitHub%20Readme%20Streak%20Stats) to create a new Personal Access Token (no scopes required)
+9. Scroll to the bottom and click **"Generate token"**
+10. Visit the [Vercel dashboard](https://vercel.com/dashboard) and select your project, then click **"Settings"**, then **"Environment Variables"**.
+11. Add a new variable with the key `TOKEN` and the value as your token from step 9 and click "Save".
+12. For the environment variable to be available, you will need to redeploy the app. Run `vercel --prod` to deploy to production.
+
+![image](https://user-images.githubusercontent.com/20955511/209588756-8bf5b0cd-9aa6-41e8-909c-97bf41e525b3.png)
+
+> **Note**  
+> To set up automatic Vercel deployments from GitHub, make sure to turn **off** "Include source files outside of the Root Directory" in the General settings and use `vercel` as the production branch in the Git settings.
 
 </details>
 

@@ -32,10 +32,19 @@ if (!isset($_REQUEST["user"])) {
 
 try {
     // get streak stats for user given in query string
-    $contributionGraphs = getContributionGraphs($_REQUEST["user"]);
+    $user = preg_replace("/[^a-zA-Z0-9\-]/", "", $_REQUEST["user"]);
+    $contributionGraphs = getContributionGraphs($user);
     $contributions = getContributionDates($contributionGraphs);
-    $stats = getContributionStats($contributions);
+    if (isset($_GET["mode"]) && $_GET["mode"] === "weekly") {
+        $stats = getWeeklyContributionStats($contributions);
+    } else {
+        $stats = getContributionStats($contributions);
+    }
     renderOutput($stats);
 } catch (InvalidArgumentException | AssertionError $error) {
+    error_log("Error {$error->getCode()}: {$error->getMessage()}");
+    if ($error->getCode() >= 500) {
+        error_log($error->getTraceAsString());
+    }
     renderOutput($error->getMessage(), $error->getCode());
 }
