@@ -37,8 +37,18 @@ return [
         "Week Streak" => "Week Streak",
         "Longest Week Streak" => "Longest Week Streak",
         "Present" => "Present",
+        "Excluding" => "Excluding",
     ],
     // Locales below are sorted alphabetically
+    "am" => [
+        "Total Contributions" => "ጠቅላላ አስተዋጽዖዎች",
+        "Current Streak" => "የአሁን ድግግሞሽ",
+        "Longest Streak" => "በጣም ረጅሙ ድግግሞሽ",
+        "Week Streak" => "የሳምንት ድግግሞሽ",
+        "Longest Week Streak" => "በጣም ረጅሙ የሳምንት ድግግሞሽ",
+        "Present" => "ያሁኑ",
+        "Excluding" => "ሳይጨምር",
+    ],
     "ar" => [
         "rtl" => true,
         "Total Contributions" => "إجمالي المساهمات",
@@ -79,6 +89,16 @@ return [
         "Week Streak" => "Wochenserie",
         "Longest Week Streak" => "Längste Wochenserie",
         "Present" => "Heute",
+        "Excluding" => "Ausgenommen",
+    ],
+    "el" => [
+        "Total Contributions" => "Συνολικές Συνεισφορές",
+        "Current Streak" => "Τρέχουσα Σειρά",
+        "Longest Streak" => "Μεγαλύτερη Σειρά",
+        "Week Streak" => "Εβδομαδιαία Σειρά",
+        "Longest Week Streak" => "Μεγαλύτερη Εβδομαδιαία Σειρά",
+        "Present" => "Σήμερα",
+        "Excluding" => "Εξαιρούνται",
     ],
     "es" => [
         "Total Contributions" => "Contribuciones Totales",
@@ -113,6 +133,7 @@ return [
         "Week Streak" => "רצף שבועי",
         "Longest Week Streak" => "רצף שבועי הכי ארוך",
         "Present" => "היום",
+        "Excluding" => "לא כולל",
     ],
     "hi" => [
         "Total Contributions" => "कुल योगदान",
@@ -130,6 +151,14 @@ return [
         "Longest Week Streak" => "pi long tras semèn",
         "Present" => "Prezan",
     ],
+    "hy" => [
+        "Total Contributions" => "Ընդհանուր\nներդրումը",
+        "Current Streak" => "Ընթացիկ շարք",
+        "Longest Streak" => "Ամենաերկար շարք",
+        "Week Streak" => "Ընթացիկ\nշաբաթների շարք",
+        "Longest Week Streak" => "Ամենաերկար\nշաբաթների շարք",
+        "Present" => "Այժմ",
+    ],
     "id" => [
         "Total Contributions" => "Total Kontribusi",
         "Current Streak" => "Aksi Saat Ini",
@@ -139,12 +168,13 @@ return [
         "Present" => "Sekarang",
     ],
     "it" => [
-        "Total Contributions" => "Totale dei Contributi",
+        "Total Contributions" => "Contributi Totali",
         "Current Streak" => "Serie Corrente",
         "Longest Streak" => "Serie più Lunga",
         "Week Streak" => "Serie Settimanale",
         "Longest Week Streak" => "Serie Settimanale più Lunga",
         "Present" => "Presente",
+        "Excluding" => "Escludendo",
     ],
     "ja" => [
         "date_format" => "[Y.]n.j",
@@ -162,6 +192,7 @@ return [
         "Week Streak" => "ವಾರದ ಸ್ಟ್ರೀಕ್",
         "Longest Week Streak" => "ಅತ್ಯಧಿಕ ವಾರದ ಸ್ಟ್ರೀಕ್",
         "Present" => "ಪ್ರಸ್ತುತ",
+        "Excluding" => "ಹೊರತುಪಡಿಸಿ",
     ],
     "ko" => [
         "Total Contributions" => "총 기여 수",
@@ -170,6 +201,7 @@ return [
         "Week Streak" => "주간 기여 수",
         "Longest Week Streak" => "최대 주간 기여 수",
         "Present" => "현재",
+        "Excluding" => "제외된 날",
     ],
     "mr" => [
         "Total Contributions" => "एकूण योगदान",
@@ -178,6 +210,15 @@ return [
         "Week Streak" => "साप्ताहिक सातत्यता",
         "Longest Week Streak" => "दीर्घकालीन साप्ताहिक सातत्यता",
         "Present" => "आज पर्यंत",
+    ],
+    "ne" => [
+        "Total Contributions" => "कुल योगदान",
+        "Current Streak" => "हालको दैनिक योगदान",
+        "Longest Streak" => "सबैभन्दा लामो दैनिक योगदान",
+        "Week Streak" => "सप्ताहिक योगदान",
+        "Longest Week Streak" => "सबैभन्दा लामो साप्ताहिक योगदान",
+        "Present" => "आज सम्म",
+        "Excluding" => "बाहेक",
     ],
     "nl" => [
         "Total Contributions" => "Totale Bijdrage",
@@ -196,6 +237,7 @@ return [
         "Present" => "Dziś",
     ],
     "ps" => [
+        "rtl" => true,
         "Total Contributions" => "ټولې ونډې",
         "Current Streak" => "اوسنی پرمختګ",
         "Longest Streak" => "تر ټولو اوږد پرمختګ",
@@ -219,6 +261,14 @@ return [
         "Longest Week Streak" => "Самая длинная серия недель",
         "Present" => "Сейчас",
     ],
+    "rw" => [
+        "Total Contributions" => "Imisanzu yose",
+        "Current Streak" => "Igihe gishize ntaguhagarara",
+        "Longest Streak" => "Igihe cyirecyire cyashize ntaguhagarara",
+        "Week Streak" => "Igihe gishize ntaguhagarara mu cyumweru",
+        "Longest Week Streak" => "Igihe cyirecyire cyashize ntaguhagarara mu byumweru",
+        "Present" => "None",
+    ],
     "sa" => [
         "Total Contributions" => "कुल योगदानम्",
         "Current Streak" => "क्रमशः दिवसान् चालयन्तु",
@@ -226,6 +276,23 @@ return [
         "Week Streak" => "निरन्तरसप्ताहाः",
         "Longest Week Streak" => "दीर्घतमाः निरन्तरसप्ताहाः",
         "Present" => "वर्तमान",
+    ],
+    "sr" => [
+        "Total Contributions" => "Укупно додавања",
+        "Current Streak" => "Тренутна серија",
+        "Longest Streak" => "Најдужа серија",
+        "Week Streak" => "Недељна серија",
+        "Longest Week Streak" => "Најдужа недељена серија",
+        "Present" => "Данас",
+        "Excluding" => "Искључујући",
+    ],
+    "sv" => [
+        "Total Contributions" => "Totalt antal uppladningar",
+        "Current Streak" => "Dagar uppladdat i rad just nu",
+        "Longest Streak" => "Längst antal dagar uppladdat i rad",
+        "Week Streak" => "Antal veckor i rad",
+        "Longest Week Streak" => "Längst antal veckor i rad",
+        "Present" => "Just nu",
     ],
     "sw" => [
         "Total Contributions" => "Jumla ya Michango",
@@ -258,6 +325,7 @@ return [
         "Week Streak" => "Діяльність за тиждень",
         "Longest Week Streak" => "Найбільша к-сть тижнів",
         "Present" => "Наразі",
+        "Excluding" => "Виключаючи",
     ],
     "ur_PK" => [
         "rtl" => true,
@@ -267,6 +335,7 @@ return [
         "Week Streak" => "ہفتہ وار تسلسل",
         "Longest Week Streak" => "طویل ترین ہفتہ وار تسلسل",
         "Present" => "حاظر",
+        "Excluding" => "خارج",
     ],
     "vi" => [
         "Total Contributions" => "Tổng số đóng góp",
