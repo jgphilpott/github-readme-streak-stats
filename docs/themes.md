@@ -126,9 +126,9 @@ Note: Theme names provided are case-insensitive and any use of underscores will 
 |       `ocean-gradient`        |      ![image](https://user-images.githubusercontent.com/20955511/233865264-3bb6c04d-05d2-47b1-857c-3f9a1277651f.png)      |
 |      `ambient-gradient`       |      ![image](https://user-images.githubusercontent.com/20955511/233865269-81583e73-c9b6-4e4b-9475-bc130de1bfdd.png)      |
 |      `catppuccin-latte`       |      ![image](https://user-images.githubusercontent.com/85760664/248204601-358a8a31-4ffc-4535-a617-840926ecd4f0.png)      |
-|     `catppuccino-frappe`      |      ![image](https://user-images.githubusercontent.com/85760664/248204858-daa7bd60-1e83-4b4e-8afc-65644055235e.png)      |
-|    `catppuccino-macchiato`    |      ![image](https://user-images.githubusercontent.com/85760664/248205012-15d74ba2-746a-4efd-b2f5-bc2db87b7c10.png)      |
-|      `catppuccino-mocha`      |      ![image](https://user-images.githubusercontent.com/85760664/248204228-9f965d12-2013-48c9-b3a8-e9717b1c4e43.png)      |
+|      `catppuccin-frappe`      |      ![image](https://user-images.githubusercontent.com/85760664/248204858-daa7bd60-1e83-4b4e-8afc-65644055235e.png)      |
+|    `catppuccin-macchiato`     |      ![image](https://user-images.githubusercontent.com/85760664/248205012-15d74ba2-746a-4efd-b2f5-bc2db87b7c10.png)      |
+|      `catppuccin-mocha`       |      ![image](https://user-images.githubusercontent.com/85760664/248204228-9f965d12-2013-48c9-b3a8-e9717b1c4e43.png)      |
 |         `burnt-neon`          |     ![image](https://user-images.githubusercontent.com/112064697/250343082-de641726-1200-4264-885a-154d539cfc3f.png)      |
 |           `humoris`           |      ![image](https://user-images.githubusercontent.com/20955511/263020536-793bedbd-cca6-47e5-92dc-c7b38ab05bce.png)      |
 |         `shadow-red`          |      ![image](https://user-images.githubusercontent.com/86386385/263407052-345edfdf-b6ee-4b53-a4c4-7dcb4948f6dc.png)      |
@@ -149,6 +149,11 @@ Note: Theme names provided are case-insensitive and any use of underscores will 
 |          `nightfox`           | ![image](https://github.com/DenverCoder1/github-readme-streak-stats/assets/86386385/00ab9a73-67d6-430f-8b22-da49a3e49091) |
 |           `nordfox`           | ![image](https://github.com/DenverCoder1/github-readme-streak-stats/assets/86386385/6feef268-ed8f-4d60-bbd8-f7a0a7a58ce8) |
 |           `terafox`           | ![image](https://github.com/DenverCoder1/github-readme-streak-stats/assets/86386385/ef943ced-365f-4ce5-965a-a9499ce1d8e1) |
+|           `iceberg`           | ![image](https://github.com/DenverCoder1/github-readme-streak-stats/assets/86386385/912d8f6a-ba21-4668-9109-300c67a1f1c2) |
+|       `whatsapp-light2`       | ![image](https://github.com/DenverCoder1/github-readme-streak-stats/assets/86386385/45d22825-e71b-42c7-aabf-14f50d47beef) |
+|       `whatsapp-dark2`        | ![image](https://github.com/DenverCoder1/github-readme-streak-stats/assets/86386385/4b41e537-368f-4f67-a1e6-81ca757ce5f7) |
+|       `travelers-theme`       | ![image](https://github.com/DenverCoder1/github-readme-streak-stats/assets/20955511/45b0bb8c-fb88-4f2e-ad97-665db6bce4a7) |
+|        `youtube-dark`         | ![image](https://github.com/DenverCoder1/github-readme-streak-stats/assets/62086478/6f774511-2477-46d2-b7bd-de3a57a3ca78) |
 
 ### Can't find the theme you like?
 
